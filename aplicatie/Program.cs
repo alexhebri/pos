@@ -7,10 +7,15 @@ using entitati;
 
 namespace aplicatie
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
+            int i, nProd, nServ, CodProdus, CodServiciu, DurataReparatie;
+            string DenumireP, DenumireS, Producator;
+            double Pret;
+
+
         }
     }
 }
