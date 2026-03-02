@@ -24,7 +24,7 @@ namespace entitati
                 Console.Write("Cod produs:");
                 CodProdus = Convert.ToInt32(Console.ReadLine());
 
-                if (Produs.CautaProdus(vP, nProd, CodProdus) == 1)
+                if (Produs.CautaProdus(vP, j, CodProdus) == 1)
                     continue;
 
                 Console.Write("Denumire produs:");
@@ -54,7 +54,7 @@ namespace entitati
                 Console.Write("Cod serviciu:");
                 CodServiciu = Convert.ToInt32(Console.ReadLine());
 
-                if (Serviciu.CautaServiciu(vS, nServ, CodServiciu) == 1)
+                if (Serviciu.CautaServiciu(vS, j, CodServiciu) == 1)
                     continue;
 
                 Console.Write("Denumire serviciu:");

@@ -36,10 +36,5 @@ namespace entitati
             }
             return ok;
         }
-
-        public static bool CautaServiciu(Serviciu[] vS, int nServ, int codServiciu)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
