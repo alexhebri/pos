@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angajat.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Persoana.cs" />
     <Compile Include="Produs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

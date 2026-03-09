@@ -75,6 +75,57 @@ namespace entitati
             {
                 vS[i].Afisare();
             }
+
+
+            int nA, nC, Id, Salariu, Varsta;
+            string Nume;
+            Angajat[] vA = new Angajat[10];
+            Client[] vC = new Client[10];
+
+            Console.Write("Cati angajati? ");
+            nA = Convert.ToInt32(Console.ReadLine());
+            for (i = 0; i < nA; i++)
+            {
+                Console.Write("Id = ");
+                Id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Nume: ");
+                Nume = Console.ReadLine();
+
+                Console.Write("Salariul angajatului:  ");
+                Salariu = Convert.ToInt32(Console.ReadLine());
+
+                vA[i] = new Angajat(Id, Nume, Salariu);
+            }
+            Console.WriteLine("**** Lista de angajati ****");
+            for (i = 0; i < nA; i++)
+            {
+                vA[i].Afisare();
+            }
+
+
+            Console.Write("Cati clienti? ");
+            nC = Convert.ToInt32(Console.ReadLine());
+            for (i = 0; i < nC; i++)
+            {
+                Console.Write("Id client = ");
+                Id = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Nume: ");
+                Nume = Console.ReadLine();
+
+                Console.Write("Varsta clientului: ");
+                Varsta = Convert.ToInt32(Console.ReadLine());
+
+                vC[i] = new Client(Id, Nume, Varsta);
+            }
+            Console.WriteLine("**** Lista de clienti ****");
+            for (i = 0; i < nC; i++)
+            {
+                vC[i].Afisare();
+            }
+
+
         }
     }
 }
