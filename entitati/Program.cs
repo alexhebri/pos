@@ -3,78 +3,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using entitati;
 
-namespace entitati
+namespace aplicatie
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            int i, j, nProd, nServ, CodProdus, CodServiciu, DurataReparatie;
-            string DenumireP, DenumireS, Producator;
-            double Pret;
+            int i, nA, nC, ID, Salariu, Varsta;
+            string Nume;
+            Angajat[] vA = new Angajat[10];
+            Client[] vC = new Client[10];
 
-            Console.Write("Cate produse? ");
-            nProd = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Cati angajati?");
+            nA = Convert.ToInt32(Console.ReadLine());
 
-            Produs[] vP = new Produs[nProd];
-            j = 0;
-            for (i = 0; i < nProd; i++)
+            for (i = 0; i < nA; i++)
             {
-                Console.Write("Cod produs: ");
-                CodProdus = Convert.ToInt32(Console.ReadLine());
+                Console.Write("ID = ");
+                ID = Convert.ToInt32(Console.ReadLine());
 
-                if (Produs.CautaProdus(vP, j, CodProdus) == 1)
-                    continue;
+                Console.Write("Nume: ");
+                Nume = Console.ReadLine();
 
-                Console.Write("Denumire produs: ");
-                DenumireP = Console.ReadLine();
+                Console.Write("Salariu: ");
+                Salariu = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
 
-                Console.Write("Producator produs: ");
-                Producator = Console.ReadLine();
-
-                vP[j] = new Produs(CodProdus, DenumireP, Producator);
-                j++; //cate produse cu cod diferit au fost adaugate
-
-            }
-            Console.WriteLine("**** Produsele sunt: ****");
-            for (i = 0; i < j; i++)
-            {
-                vP[i].Afisare();
+                vA[i] = new Angajat(ID, Nume, Salariu);
             }
 
-
-            Console.Write("Cate servicii? ");
-            nServ = Convert.ToInt32(Console.ReadLine());
-
-            Serviciu[] vS = new Serviciu[nServ];
-            j = 0;
-            for (i = 0; i < nServ; i++)
+            Console.WriteLine();
+            Console.WriteLine("***** LISTA DE ANGAJATI *****");
+            for (i = 0; i < nA; i++)
             {
-                Console.Write("Cod serviciu: ");
-                CodServiciu = Convert.ToInt32(Console.ReadLine());
-
-                if (Serviciu.CautaServiciu(vS, j, CodServiciu) == 1)
-                    continue;
-
-                Console.Write("Denumire serviciu: ");
-                DenumireS = Console.ReadLine();
-
-                Console.Write("Pretul: ");
-                Pret = Convert.ToDouble(Console.ReadLine());
-
-                Console.Write("Durata reparatie: ");
-                DurataReparatie = Convert.ToInt32(Console.ReadLine());
-
-                vS[j] = new Serviciu(CodServiciu, DenumireS, Pret, DurataReparatie);
-                j++; //cate produse cu cod diferit au fost adaugate
-
+                vA[i].afisare();
             }
-            Console.WriteLine("**** Serviciile sunt: ****");
-            for (i = 0; i < j; i++)
+
+            Console.WriteLine();
+            Console.WriteLine("Cati clienti?");
+            nC = Convert.ToInt32(Console.ReadLine());
+
+            for (i = 0; i < nC; i++)
             {
-                vS[i].Afisare();
+                Console.Write("ID = ");
+                ID = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Nume: ");
+                Nume = Console.ReadLine();
+
+                Console.Write("Varsta: ");
+                Varsta = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+
+                vC[i] = new Client(ID, Nume, Varsta);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("***** LISTA DE CLIENTI *****");
+            for (i = 0; i < nC; i++)
+            {
+                vC[i].afisare();
+            }
+
+            Console.ReadLine();
         }
     }
 }

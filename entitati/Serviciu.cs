@@ -6,34 +6,35 @@ using System.Threading.Tasks;
 
 namespace entitati
 {
-    public class Serviciu
+    public class Serviciu : ProdusAbstract
     {
-        public int CodServiciu { get; set; }
-        public string Denumire { get; set; }
         public double Pret { get; set; }
         public int DurataReparatie { get; set; }
 
-        public Serviciu(int codServiciu, string denumire, double pret, int durataReparatie)
+        public Serviciu(int id, string denumire, int codIntern, double pret, int durataReparatie)
+            : base(id, denumire, codIntern)
         {
-            CodServiciu = codServiciu;
-            Denumire = denumire;
             Pret = pret;
             DurataReparatie = durataReparatie;
         }
 
-        public void Afisare()
+        public override void Afisare1()
         {
-            Console.WriteLine(CodServiciu + " " + Denumire + " " + Pret + " " + DurataReparatie);
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + DurataReparatie);
         }
 
-        public static int CautaServiciu(Serviciu[] v, int n, int codCautat)
+        public override void Afisare2()
         {
-            int ok = 0; //pp. serviciu nu se afla in lista
+            base.Afisare2();
+            Console.WriteLine(Pret + " " + DurataReparatie);
+        }
+
+        public static int cautaServiciu(Serviciu[] v, int n, int codCautat)
+        {
+            int ok = 0;
             for (int i = 0; i < n; i++)
-            {
-                if (v[i].CodServiciu == codCautat)
-                    ok = 1; //am gasit serviciul in lista
-            }
+                if (codCautat == v[i].ID)
+                    ok = 1;
             return ok;
         }
     }

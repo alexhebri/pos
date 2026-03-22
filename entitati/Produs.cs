@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace entitati
 {
-    public class Produs
+    public class Produs : ProdusAbstract
     {
-        public int CodProdus { get; set; }
-        public string Denumire { get; set; }
         public string Producator { get; set; }
 
-        public Produs(int codProdus, string denumire, string producator)
+        public Produs(int id, string denumire, int codIntern, string producator)
+            : base(id, denumire, codIntern)
         {
-            CodProdus = codProdus;
             Producator = producator;
-            Denumire = denumire;
         }
 
-        public void Afisare()
+        public override void Afisare1()
         {
-            Console.WriteLine(CodProdus + " " + Denumire + " " + Producator);
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Producator);
         }
 
-        public static int CautaProdus(Produs[] v, int n, int codCautat)
+        public override void Afisare2()
         {
-            int ok = 0; //pp. produsul nu se afla in lista
-            for(int i = 0; i < n; i++)
-            {
-                if (v[i].CodProdus == codCautat)
+            base.Afisare2();
+            Console.WriteLine(Producator);
+        }
+
+        public static int cautaProdus(Produs[] v, int n, int codCautat)
+        {
+            int ok = 0; //pp ca produsul nu se afla in lista
+            for (int i = 0; i < n; i++)
+                if (codCautat == v[i].ID)
                     ok = 1; //am gasit produsul in lista
-            }
             return ok;
         }
-
     }
 }
