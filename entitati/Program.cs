@@ -66,8 +66,6 @@ namespace aplicatie
             {
                 vC[i].afisare();
             }
-
-            Console.ReadLine();
         }
     }
 }

@@ -8,18 +8,14 @@ namespace entitati
 {
     public class Persoana
     {
-        public int ID { get; set; }
         public string Nume { get; set; }
 
         public Persoana(int id, string nume)
         {
-            ID = id;
             Nume = nume;
         }
 
-        public virtual void afisare()
         {
-            Console.WriteLine(ID + " " + Nume);
         }
     }
 }
