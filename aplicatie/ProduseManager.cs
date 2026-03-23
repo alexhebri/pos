@@ -47,6 +47,32 @@ namespace aplicatie
             for (i = 0; i <= j; i++)
                 vp[i].Afisare2();
         }
-        
+
+        // cautare dupa obiect
+        public bool Contine(Produs p)
+        {
+            bool ok = false;
+            for (int i = 0; i < j; i++)
+                if (vp[i] == p)   // folosim operatorul ==
+                    ok = true;
+
+            return ok;
+        }
+
+        // cautare dupa nume (returneaza TOATE)
+        public Produs[] Contine(string numeProdus)
+        {
+            Produs[] rezultate = new Produs[10];
+            int k = 0;
+
+            for (int i = 0; i < j; i++)
+                if (vp[i].Denumire == numeProdus)
+                {
+                    rezultate[k] = vp[i];
+                    k++;
+                }
+
+            return rezultate;
+        }
     }
 }

@@ -37,5 +37,44 @@ namespace entitati
                     ok = 1;
             return ok;
         }
+
+        public override bool Equals(object obj)
+        {
+            bool ok = false;
+
+            // verificam daca obiectul NU este null si este de tip Serviciu
+            if (obj is Serviciu s)
+            {
+                // comparam campurile ID si CodIntern
+                if (ID == s.ID && CodIntern == s.CodIntern)
+                    ok = true;
+            }
+            return ok;
+        }
+
+        public static bool operator ==(Serviciu s1, Serviciu s2)
+        {
+            bool ok = false;
+
+            if (ReferenceEquals(s1, s2))
+                ok = true;
+            else if (!(s1 is null) && !(s2 is null))
+            {
+                if (s1.ID == s2.ID && s1.CodIntern == s2.CodIntern)
+                    ok = true;
+            }
+
+            return ok;
+        }
+
+        public static bool operator !=(Serviciu s1, Serviciu s2)
+        {
+            bool ok = false; // presupunem ca NU sunt diferite
+
+            if (!(s1 == s2)) // folosim operatorul == inversat
+                ok = true;
+
+            return ok;
+        }
     }
 }

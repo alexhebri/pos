@@ -52,5 +52,27 @@ namespace aplicatie
             for (i = 0; i <= j; i++)
                 vs[i].Afisare2();
         }
+
+        // cautare dupa obiect
+        public bool Contine(Serviciu s)
+        {
+            bool ok = false;
+            for (int i = 0; i < j; i++)
+                if (vs[i] == s)   // folosim operatorul ==
+                    ok = true;
+
+            return ok;
+        }
+
+        // cautare dupa nume
+        public bool Contine(string serviciuCautat)
+        {
+            bool ok = false;
+            for (int i = 0; i < j; i++)
+                if (vs[i].Denumire == serviciuCautat)
+                    ok = true;
+
+            return ok;
+        }
     }
 }

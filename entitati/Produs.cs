@@ -35,5 +35,44 @@ namespace entitati
                     ok = 1; //am gasit produsul in lista
             return ok;
         }
+
+        public override bool Equals(object obj)
+        {
+            bool ok = false;
+
+            // verificam daca obiectul NU este null si este de tip Produs
+            if (obj is Produs p)
+            {
+                // comparam campurile ID si CodIntern
+                if (ID == p.ID && CodIntern == p.CodIntern)
+                    ok = true;
+            }
+            return ok;
+        }
+
+        public static bool operator ==(Produs p1, Produs p2)
+        {
+            bool ok = false;
+
+            if (ReferenceEquals(p1, p2))
+                ok = true;
+            else if (!(p1 is null) && !(p2 is null))
+            {
+                if (p1.ID == p2.ID && p1.CodIntern == p2.CodIntern)
+                    ok = true;
+            }
+
+            return ok;
+        }
+
+        public static bool operator !=(Produs p1, Produs p2)
+        {
+            bool ok = false; // presupunem ca NU sunt diferite
+
+            if (!(p1 == p2)) // folosim operatorul == inversat
+                ok = true;
+
+            return ok;
+        }
     }
 }
