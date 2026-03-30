@@ -52,13 +52,19 @@ namespace entitati
             return ok;
         }
 
+        //polimorfism prin suprascrierea operatiilor/metodelor
+        //Operatorul==este un operator static redefinit în clasă.
+        //Implicit, pentru obiecte, compară adresele din memorie (ca și Equals), nu valorile câmpurilor.
+        //Noi îl suprascriem pentru a putea scrie p1 == p2 în loc dep1.Equals(p2), obținând același rezultat, si anume compararea valorilor atributelor.
+        //Important:Când redefiniți ==, trebuie redefinit și !=, altfel compilatorul dă eroare.
+
         public static bool operator ==(Serviciu s1, Serviciu s2)
         {
-            bool ok = false;
+            bool ok = false; 
 
             if (ReferenceEquals(s1, s2))
                 ok = true;
-            else if (!(s1 is null) && !(s2 is null))
+            else if (s1 != null && s2 != null)
             {
                 if (s1.ID == s2.ID && s1.CodIntern == s2.CodIntern)
                     ok = true;

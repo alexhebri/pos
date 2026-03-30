@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,6 +38,12 @@ namespace entitati
             return ok;
         }
 
+        //polimorfism prin suprascrierea operatiilor/metodelor
+        //Operatorul==este un operator static redefinit în clasă.
+        //Implicit, pentru obiecte, compară adresele din memorie (ca și Equals), nu valorile câmpurilor.
+        //Noi îl suprascriem pentru a putea scrie p1 == p2 în loc dep1.Equals(p2), obținând același rezultat, si anume compararea valorilor atributelor.
+        //Important:Când redefiniți ==, trebuie redefinit și !=, altfel compilatorul dă eroare.
+
         public override bool Equals(object obj)
         {
             bool ok = false;
@@ -56,7 +64,7 @@ namespace entitati
 
             if (ReferenceEquals(p1, p2))
                 ok = true;
-            else if (!(p1 is null) && !(p2 is null))
+            else if (p1 != null && p2 != null)
             {
                 if (p1.ID == p2.ID && p1.CodIntern == p2.CodIntern)
                     ok = true;

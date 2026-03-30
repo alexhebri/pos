@@ -16,6 +16,7 @@ namespace aplicatie
             Angajat[] vA = new Angajat[10];
             Client[] vC = new Client[10];
 
+
             Console.WriteLine("Cati angajati?");
             nA = Convert.ToInt32(Console.ReadLine());
 

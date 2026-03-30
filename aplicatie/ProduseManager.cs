@@ -11,6 +11,7 @@ namespace aplicatie
     {
         public int i, j, nProd, ID, CodIntern;
         public string DenumireProd, Producator;
+        public Produs pc = new Produs(123, "", 12, "");
 
         public Produs[] vp = new Produs[10];
 
@@ -48,6 +49,35 @@ namespace aplicatie
                 vp[i].Afisare2();
         }
 
+
+        //utilizam functiile de suprascriere
+        public void VerificareProduseEgale1()
+        {
+            for(int k = 0; k < j; k++)
+            {
+                if (vp[k].Equals(pc)) //metoda equals
+                    Console.WriteLine("Produsu egal");
+            }
+        }
+
+        public void VerificareProduseEgale2()
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (vp[k] == pc) //apeland operatorul == 
+                    Console.WriteLine("Produsu egal");
+            }
+        }
+
+        public void VerificareProduseDiferite()
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (vp[k] != pc)
+                    Console.WriteLine("Produse diferite");
+            }
+        }
+
         // cautare dupa obiect
         public bool Contine(Produs p)
         {
@@ -59,19 +89,38 @@ namespace aplicatie
             return ok;
         }
 
-        // cautare dupa nume (returneaza TOATE)
-        public Produs[] Contine(string numeProdus)
+
+        // cautare dupa nume
+        public bool Contine(string serviciuCautat)
         {
-            Produs[] rezultate = new Produs[10];
+            bool ok = false;
+            for (int i = 0; i < j; i++)
+                if (vp[i].Denumire == serviciuCautat)
+                    ok = true;
+
+            return ok;
+        }
+
+        // cautare dupa nume (returneaza TOATE)
+        public Produs[] Contine2(string numeProdus)
+        {
+            
             int k = 0;
 
+            for (int i = 0; i < j; i++)
+                if (vp[i].Denumire == numeProdus)
+                {
+                    k++;
+                }
+
+            Produs[] rezultate = new Produs[k];
+            k = 0;
             for (int i = 0; i < j; i++)
                 if (vp[i].Denumire == numeProdus)
                 {
                     rezultate[k] = vp[i];
                     k++;
                 }
-
             return rezultate;
         }
     }

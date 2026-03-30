@@ -12,6 +12,7 @@ namespace aplicatie
         public int i, j, nSer, ID, CodIntern, DurataReparatie;
         public string DenumireSer;
         public double Pret;
+        public Serviciu ps = new Serviciu(123, "", 12, 500, 8);
 
         public Serviciu[] vs = new Serviciu[10];
 
@@ -53,15 +54,32 @@ namespace aplicatie
                 vs[i].Afisare2();
         }
 
-        // cautare dupa obiect
-        public bool Contine(Serviciu s)
+        //utilizam functiile de suprascriere
+        public void VerificareServiciiEgale1()
         {
-            bool ok = false;
-            for (int i = 0; i < j; i++)
-                if (vs[i] == s)   // folosim operatorul ==
-                    ok = true;
+            for (int k = 0; k < j; k++)
+            {
+                if (vs[k].Equals(ps)) //metoda equals
+                    Console.WriteLine("Serviciu egal");
+            }
+        }
 
-            return ok;
+        public void VerificareServiciiEgale2()
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (vs[k] == ps) //apeland operatorul == 
+                    Console.WriteLine("Serviciu egal");
+            }
+        }
+
+        public void VerificareServiciiDiferite()
+        {
+            for (int k = 0; k < j; k++)
+            {
+                if (vs[k] != ps)
+                    Console.WriteLine("Servicii diferite");
+            }
         }
 
         // cautare dupa nume
@@ -73,6 +91,40 @@ namespace aplicatie
                     ok = true;
 
             return ok;
+        }
+
+        // cautare dupa obiect
+        public bool Contine(Serviciu s)
+        {
+            bool ok = false;
+            for (int i = 0; i < j; i++)
+                if (vs[i] == s)   // folosim operatorul ==
+                    ok = true;
+
+            return ok;
+        }
+
+        // cautare dupa nume (returneaza TOATE)
+        public Serviciu[] Contine2(string numeProdus)
+        {
+
+            int k = 0;
+
+            for (int i = 0; i < j; i++)
+                if (vs[i].Denumire == numeProdus)
+                {
+                    k++;
+                }
+
+            Serviciu[] rezultate = new Serviciu[k];
+            k = 0;
+            for (int i = 0; i < j; i++)
+                if (vs[i].Denumire == numeProdus)
+                {
+                    rezultate[k] = vs[i];
+                    k++;
+                }
+            return rezultate;
         }
     }
 }
