@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Produse>
+	<Produs>
+		<id>100</id>
+		<denumire>Tastatura</denumire>
+		<codIntern>10</codIntern>
+		<producator>Asus</producator>
+	</Produs>
+	
+	<Produs>
+		<id>123</id>
+		<denumire>Mouse</denumire>
+		<codIntern>12</codIntern>
+		<producator>Lenovo</producator>
+	</Produs>
+
+	<Produs>
+		<id>127</id>
+		<denumire>Tastatura</denumire>
+		<codIntern>17</codIntern>
+		<producator>A+</producator>
+	</Produs>
+</Produse>

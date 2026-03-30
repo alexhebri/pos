@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using entitati;
 
 namespace aplicatie
@@ -41,6 +43,30 @@ namespace aplicatie
                 j++; //cate produse cu cod diferit au fost adaugate
             }
         }
+
+        public void CitireProduseDinFisierulXML()
+        {
+            List<Produs> vp = new List<Produs>();
+            //initializare lista dintr-un fisier XML
+            XmlDocument doc = new XmlDocument();
+            //incarca fisierul
+            doc.Load("...Produse.xml"); //calea spre fisier
+                                        //selecteaza nodurile
+            XmlNodeList lista_noduri = doc.SelectNodes("/produse/Produs");
+            foreach (XmlNode nod in lista_noduri)
+            {
+                //itereaza si selecteaza simpurile fiecarui nod si
+                //informatia continuta in cadrul proprietatii InnerText
+                string nume = nod["Nume"].InnerText;
+                string codIntern = nod["CodIntern"].InnerText;
+                string producator = nod["Producator"].InnerText;
+                
+
+                //adauga in lista produse
+                vp.Add(new Produs(vp.Count + 1, nume, codIntern, producator));
+            }
+        }
+        
 
         public void AfisareaTuturorProduselor()
         {
@@ -122,6 +148,11 @@ namespace aplicatie
                     k++;
                 }
             return rezultate;
+        }
+
+        public void Sorteaza()
+        {
+            Array.Sort(vp, 0, j); //sorteaza doar elementele din vector care au fost adaugate (de la 0 la j)
         }
     }
 }

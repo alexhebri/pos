@@ -48,6 +48,11 @@ namespace aplicatie
                 }
             }
 
+            //pt IComparable
+            pM.Sorteaza();
+            Console.WriteLine("Produsele sortate dupa id sunt:");
+            pM.AfisareaTuturorProduselor();
+
             //SERVICII
             ServiciiManager sM = new ServiciiManager();
             Serviciu ps = new Serviciu(123, "", 12, 500, 8);

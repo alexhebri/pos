@@ -8,14 +8,31 @@ using System.Threading.Tasks;
 
 namespace entitati
 {
-    public class Produs : ProdusAbstract
+    public class Produs : ProdusAbstract, IComparable<Produs>
     {
+        private int v;
+        private string nume;
+        private string codIntern;
+
         public string Producator { get; set; }
 
         public Produs(int id, string denumire, int codIntern, string producator)
             : base(id, denumire, codIntern)
         {
             Producator = producator;
+        }
+
+        public Produs(int v, string nume, string codIntern, string producator)
+        {
+            this.v = v;
+            this.nume = nume;
+            this.codIntern = codIntern;
+            Producator = producator;
+        }
+
+        public override string ToString()
+        {
+            return ID + " " + Denumire + " " + CodIntern + " " + Producator + " ";
         }
 
         public override void Afisare1()
@@ -81,6 +98,14 @@ namespace entitati
                 ok = true;
 
             return ok;
+        }
+
+        public int CompareTo(Produs p)
+        {
+            if(p == null)
+                return 1; // consideram ca orice produs este mai mare decat null
+
+            return ID.CompareTo(p.ID); // comparam ID-urile pentru a determina ordinea
         }
     }
 }
