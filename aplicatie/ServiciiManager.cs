@@ -23,6 +23,45 @@ namespace aplicatie
             j = 0;
             for (i = 0; i < nSer; i++)
             {
+                /*Varianta equals
+                   Servicii sc = new Servicii(ID, "", 0, "");
+                   int ok = 0;
+                    for (int k = 0; k < j; k++)
+                    {
+                        if (vp[k].Equals(pc))
+                        {
+                         ok = 1;
+                       }
+                        if(ok == 1)
+                            {
+                                    Console.WriteLine("Acest id exista deja");
+                                    i--;
+                                    continue;
+                               }
+                       }
+                   */
+
+
+                /*Varianta cu ==
+                Serviciu sc = new Serviciu(ID, "", 0, 0, 0);
+                int ok = 0;
+                for (int k = 0; k < j; k++)
+                {
+                    if (sc[k] == sc)
+                    {
+                        ok = 1;
+                    }
+                    if(ok == 1)
+                    {
+                        Console.WriteLine("Acest id exista deja");
+                        i--;
+                        continue;
+                    }
+                }
+                */
+
+
+
                 Console.Write("Cod serviciu: ");
                 ID = Convert.ToInt32(Console.ReadLine());
 

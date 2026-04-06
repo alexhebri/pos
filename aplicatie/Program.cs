@@ -11,16 +11,18 @@ namespace aplicatie
     {
         static void Main(string[] args)
         {
+            //*************PRODUSE**************
             ProduseManager pM = new ProduseManager();
             string DenCautat;
             
             pM.CitireProduse();
             pM.AfisareaTuturorProduselor();
 
-            //pentru equals, ==, !=
+            /*pentru equals, ==, !=
             pM.VerificareProduseEgale1();
             pM.VerificareProduseEgale2();
             pM.VerificareProduseDiferite();
+            */
 
             //pentru contine(ProduseManager -> Program)
             Produs pc = new Produs(123, "", 12, "");
@@ -53,7 +55,12 @@ namespace aplicatie
             Console.WriteLine("Produsele sortate dupa id sunt:");
             pM.AfisareaTuturorProduselor();
 
-            //SERVICII
+            //Pentru fisiere
+            pM.CitireaDinFisier();
+            pM.AfisareaPentruList();
+
+
+            //**********SERVICII**************
             ServiciiManager sM = new ServiciiManager();
             Serviciu ps = new Serviciu(123, "", 12, 500, 8);
             sM.CitireServicii();
@@ -90,6 +97,29 @@ namespace aplicatie
                 }
             }
 
+            //PENTRU INTEROGARI
+            //interogare 1
+            Console.WriteLine("Ce producator cautati?");
+            string DenumireP = Console.ReadLine();
+            pM.interogare1(DenumireP);
+
+            //interogare 2
+            Console.WriteLine("Ce producator cautati?");
+            DenumireP = Console.ReadLine();
+            pM.interogare2(DenumireP, 120); //cod intern maxim 120
+
+            //interogare 3
+            pM.interogare3();
+
+
+            /*PENTRU ListaGen
+            ListaGen<ProdusAbstract> listagenerica = new ListaGen<ProdusAbstract>();
+            listagenerica.Add(x);
+            foreach (int element in listagenerica)
+            {
+                Console.Write(element + " ");
+            }
+            */
         }
     }
 }
