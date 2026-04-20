@@ -93,7 +93,7 @@ namespace aplicatie
         {
             Console.WriteLine("*****Serviciile sunt:*****");
 
-            for (i = 0; i <= j; i++)
+            for (i = 0; i < j; i++)
                 vs[i].Afisare2();
         }
 
@@ -181,12 +181,12 @@ namespace aplicatie
 
             foreach (XmlNode node in lista)
             {
-                ID = Convert.ToInt32(node.SelectSingleNode("ID").InnerText);
+                ID = Convert.ToInt32(node.SelectSingleNode("id").InnerText);
                 DenumireSer = node["denumire"].InnerText;
-                CodIntern = Convert.ToInt32(node["podIntern"].InnerText);
-                Pret = Convert.ToInt32(node["Pret"].InnerText);
+                CodIntern = Convert.ToInt32(node["codIntern"].InnerText);
+                Pret = Convert.ToInt32(node["pret"].InnerText);
                 Categorie = node["categorie"].InnerText;
-                DurataReparatie = Convert.ToInt32(node["durataReparatie"].InnerText);
+                DurataReparatie = Convert.ToInt32(node["durataReparatiei"].InnerText);
                 elemente.Add(new Serviciu(ID, DenumireSer, CodIntern, Pret, Categorie, DurataReparatie));
 
             }

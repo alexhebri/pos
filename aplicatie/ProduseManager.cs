@@ -101,7 +101,7 @@ namespace aplicatie
         public void AfisareaTuturorProduselor()
         {
             Console.WriteLine("*****Produsele sunt:*****");
-            for (i = 0; i <= j; i++)
+            for (i = 0; i < j; i++)
                 vp[i].Afisare2();
         }
 
@@ -167,12 +167,12 @@ namespace aplicatie
             //Produse si Produs sunt numele nodurilor din fisierul XML
             foreach (XmlNode node in lista)
             {
-                ID = Convert.ToInt32(node["ID"].InnerText);
-                DenumireProd = node["Denumire"].InnerText;
-                CodIntern = Convert.ToInt32(node["CodIntern"].InnerText);
-                Pret = Convert.ToInt32(node["Pret"].InnerText);
-                Categorie = node["Categorie"].InnerText;
-                Producator = node["Producator"].InnerText;
+                ID = Convert.ToInt32(node["id"].InnerText);
+                DenumireProd = node["denumire"].InnerText;
+                CodIntern = Convert.ToInt32(node["codIntern"].InnerText);
+                Pret = Convert.ToInt32(node["pret"].InnerText);
+                Categorie = node["categorie"].InnerText;
+                Producator = node["producator"].InnerText;
                 elemente.Add(new Produs(ID, DenumireProd, CodIntern,Pret, Categorie, Producator));
             }
         }
