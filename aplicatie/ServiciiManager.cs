@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using entitati;
 
 namespace aplicatie
 {
     public class ServiciiManager
     {
-        public int i, j, nSer, ID, CodIntern, DurataReparatie;
-        public string DenumireSer;
-        public double Pret;
-        public Serviciu ps = new Serviciu(123, "", 12, 500, 8);
+        public int i, j, nSer, ID, CodIntern, DurataReparatie, Pret;
+        public string DenumireSer, Categorie;
+
+        public Serviciu ps = new Serviciu(123, "", 12, 0, "", 8);
 
         public Serviciu[] vs = new Serviciu[10];
 
@@ -75,12 +76,15 @@ namespace aplicatie
                 CodIntern = Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Pret serviciu: ");
-                Pret = Convert.ToDouble(Console.ReadLine());
+                Pret = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Categorie: ");
+                Categorie = Console.ReadLine();
 
                 Console.Write("Durata serviciu:");
                 DurataReparatie = Convert.ToInt32(Console.ReadLine());
 
-                vs[j] = new Serviciu(ID, DenumireSer, CodIntern, Pret, DurataReparatie);
+                vs[j] = new Serviciu(ID, DenumireSer, CodIntern, Pret, Categorie, DurataReparatie);
                 j++; //cate produse cu cod diferit au fost adaugate
             }
         }
@@ -164,6 +168,86 @@ namespace aplicatie
                     k++;
                 }
             return rezultate;
+        }
+
+        //******FISIERE+list servicii***********  
+        public List<ProdusAbstract> elemente = new List<ProdusAbstract>();
+
+        public void CitireServiciiDinFisier()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Servicii.xml");
+            XmlNodeList lista = doc.DocumentElement.SelectNodes("/Servicii/Serviciu");
+
+            foreach (XmlNode node in lista)
+            {
+                ID = Convert.ToInt32(node.SelectSingleNode("ID").InnerText);
+                DenumireSer = node["denumire"].InnerText;
+                CodIntern = Convert.ToInt32(node["podIntern"].InnerText);
+                Pret = Convert.ToInt32(node["Pret"].InnerText);
+                Categorie = node["categorie"].InnerText;
+                DurataReparatie = Convert.ToInt32(node["durataReparatie"].InnerText);
+                elemente.Add(new Serviciu(ID, DenumireSer, CodIntern, Pret, Categorie, DurataReparatie));
+
+            }
+        }
+
+        public void AfisareaServiciilorList()
+        {
+            Console.WriteLine("*****Serviciile citite din fisier sunt:*****");
+            foreach (Serviciu s in elemente)
+            {
+                s.Afisare2();
+            }
+        }
+
+
+        //*********INTEROGARI LINQ = un limbaj ca sql *********
+        //Interogare cu produsele de la un producator
+        public void interogare1()
+        {
+            IEnumerable<ProdusAbstract> rezultat1 =
+                from elem in elemente
+                where elem.Categorie == "Reparatie"
+                orderby elem.Denumire
+                select elem;
+
+            Console.WriteLine("Produsele din categoria Reparatie extrase: ");
+            foreach (ProdusAbstract elem in rezultat1)
+            {
+                Console.WriteLine(elem.ToString());
+            }
+        }
+
+        public void interogare2()
+        {
+            IEnumerable<ProdusAbstract> rezultat2 =
+                from elem in elemente
+                where elem.Categorie == "Reparatie" && Pret <= 300
+                orderby elem.Denumire
+                select elem;
+            Console.WriteLine("Produsele din categoria Reparatie extrase cu pret <= 300: ");
+            foreach (ProdusAbstract elem in rezultat2)
+            {
+                Console.WriteLine(elem.ToString());
+            }
+        }
+
+        public void interogare3()
+        {
+            var interogare_linq =
+            from elem in elemente
+            orderby elem.Denumire
+            group elem by elem.Categorie into gr
+            select gr;
+            foreach (var gr in interogare_linq)
+            {
+                Console.WriteLine("Categoria " + gr.Key + " :");
+                foreach (ProdusAbstract elem in gr)
+                {
+                    Console.WriteLine(elem.ToString());
+                }
+            }
         }
     }
 }

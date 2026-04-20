@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Servicii>
+	<Serviciu>
+		<id>1000</id>
+		<denumire>Reparare Monitor</denumire>
+		<codIntern>178</codIntern>
+		<pret>200</pret>
+		<categorie>Reparatie</categorie>
+		<durataReparatiei>6</durataReparatiei>
+	</Serviciu>
+
+	<Serviciu>
+		<id>1001</id>
+		<denumire>Curatare Monitor</denumire>
+		<codIntern>250</codIntern>
+		<pret>100</pret>
+		<categorie>Curatare</categorie>
+		<durataReparatiei>1</durataReparatiei>
+	</Serviciu>
+
+	<Serviciu>
+		<id>1002</id>
+		<denumire>Reparare Placa Video</denumire>
+		<codIntern>130</codIntern>
+		<pret>400</pret>
+		<categorie>Reparatie</categorie>
+		<durataReparatiei>4</durataReparatiei>
+	</Serviciu>
+</Servicii>

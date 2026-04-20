@@ -11,9 +11,9 @@ namespace aplicatie
 {
     public class ProduseManager
     {
-        public int i, j, nProd, ID, CodIntern;
-        public string DenumireProd, Producator;
-        public Produs pc = new Produs(123, "", 12, "");
+        public int i, j, nProd, ID, CodIntern, Pret;
+        public string DenumireProd, Producator, Categorie;
+        //public Produs pc = new Produs(123, "", 0, 0, "", "");
 
         public Produs[] vp = new Produs[10];
 
@@ -83,10 +83,16 @@ namespace aplicatie
                 Console.Write("Codul intern al produsului: ");
                 CodIntern = Convert.ToInt32(Console.ReadLine());
 
+                Console.Write("Pretul produsului: ");
+                Pret = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Categoria produsului: ");
+                Categorie = Console.ReadLine();
+
                 Console.Write("Producator produs: ");
                 Producator = Console.ReadLine();
 
-                vp[j] = new Produs(ID, DenumireProd, CodIntern, Producator);
+                vp[j] = new Produs(ID, DenumireProd, CodIntern,Pret, Categorie, Producator);
                 j++; //cate produse cu cod diferit au fost adaugate
             }
         }
@@ -98,7 +104,6 @@ namespace aplicatie
             for (i = 0; i <= j; i++)
                 vp[i].Afisare2();
         }
-
 
         // cautare dupa obiect
         public bool Contine(Produs p)
@@ -152,7 +157,7 @@ namespace aplicatie
         }
 
         //*****FISIERE*****
-        public List<Produs> elemente = new List<Produs>(); //elemente in loc de vp
+        public List<ProdusAbstract> elemente = new List<ProdusAbstract>(); //elemente in loc de vp
         public void CitireaDinFisier()
         {
             XmlDocument doc = new XmlDocument();
@@ -165,8 +170,10 @@ namespace aplicatie
                 ID = Convert.ToInt32(node["ID"].InnerText);
                 DenumireProd = node["Denumire"].InnerText;
                 CodIntern = Convert.ToInt32(node["CodIntern"].InnerText);
+                Pret = Convert.ToInt32(node["Pret"].InnerText);
+                Categorie = node["Categorie"].InnerText;
                 Producator = node["Producator"].InnerText;
-                elemente.Add(new Produs(ID, DenumireProd, CodIntern, Producator));
+                elemente.Add(new Produs(ID, DenumireProd, CodIntern,Pret, Categorie, Producator));
             }
         }
 
@@ -181,30 +188,30 @@ namespace aplicatie
 
         //*********INTEROGARI LINQ = un limbaj ca sql *********
         //Interogare cu produsele de la un producator
-        public void interogare1(string producatorCautat)
+        public void interogare1()
         {
-            IEnumerable<Produs> rezultat1 = 
+            IEnumerable<ProdusAbstract> rezultat1 =
                 from elem in elemente
-                where elem.Producator == producatorCautat
+                where elem.Categorie == "IT"
                 orderby elem.Denumire
                 select elem;
 
-                Console.WriteLine("Produsele extrase: ");
-            foreach (Produs elem in rezultat1)
+                Console.WriteLine("Produsele din categoria IT extrase: ");
+            foreach (ProdusAbstract elem in rezultat1)
             {
                 Console.WriteLine(elem.ToString());
             }
         }
 
-        public void interogare2(string producatorCautat, int codCautat)
+        public void interogare2()
         {
-            IEnumerable<Produs> rezultat2 =
+            IEnumerable<ProdusAbstract> rezultat2 =
                 from elem in elemente
-                where elem.Producator == producatorCautat && codCautat < 120
+                where elem.Categorie== "IT" && Pret <= 2000
                 orderby elem.Denumire
                 select elem;
-            Console.WriteLine("Produsele extrase cu id <120: ");
-            foreach (Produs elem in rezultat2)
+            Console.WriteLine("Produsele din categoria IT extrase cu pret <= 2000: ");
+            foreach (ProdusAbstract elem in rezultat2)
             {
                 Console.WriteLine(elem.ToString());
             }
@@ -212,15 +219,18 @@ namespace aplicatie
 
         public void interogare3()
         {
-            var rezultat3 =
-                from elem in elemente
-                orderby elem.Denumire
-                group elem by elem.Denumire into gr
-                select gr;
-            Console.WriteLine("Produsele grupate dupa denumire: ");
-            foreach (var gr  in rezultat3)
+            var interogare_linq =
+            from elem in elemente
+            orderby elem.Denumire
+            group elem by elem.Categorie into gr
+            select gr;
+            foreach (var gr in interogare_linq)
             {
-                Console.WriteLine(gr.ToString());
+                Console.WriteLine("Categoria " + gr.Key + " :");
+                foreach (ProdusAbstract elem in gr)
+                {
+                    Console.WriteLine(elem.ToString());
+                }
             }
         }
     }

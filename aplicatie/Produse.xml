@@ -5,6 +5,8 @@
 		<id>100</id>
 		<denumire>Tastatura</denumire>
 		<codIntern>10</codIntern>
+		<pret>75</pret>
+		<categorie>IT</categorie>
 		<producator>Asus</producator>
 	</Produs>
 	
@@ -12,6 +14,8 @@
 		<id>123</id>
 		<denumire>Mouse</denumire>
 		<codIntern>12</codIntern>
+		<pret>50</pret>
+		<categorie>IT</categorie>
 		<producator>Lenovo</producator>
 	</Produs>
 
@@ -19,6 +23,8 @@
 		<id>127</id>
 		<denumire>Tastatura</denumire>
 		<codIntern>17</codIntern>
+		<pret>230</pret>
+		<categorie>IT</categorie>
 		<producator>A+</producator>
 	</Produs>
 </Produse>

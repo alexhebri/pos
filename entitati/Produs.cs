@@ -14,30 +14,24 @@ namespace entitati
         private string nume;
         private string codIntern;
 
+ 
         public string Producator { get; set; }
 
-        public Produs(int id, string denumire, int codIntern, string producator)
-            : base(id, denumire, codIntern)
+        public Produs(int id, string denumire, int codIntern,int pret, string categorie, string producator)
+            : base(id, denumire, codIntern, pret, categorie)
         {
             Producator = producator;
         }
-
-        public Produs(int v, string nume, string codIntern, string producator)
-        {
-            this.v = v;
-            this.nume = nume;
-            this.codIntern = codIntern;
-            Producator = producator;
-        }
+        
 
         public override string ToString()
         {
-            return ID + " " + Denumire + " " + CodIntern + " " + Producator + " ";
+            return ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " " + Producator + " ";
         }
 
         public override void Afisare1()
         {
-            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Producator);
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie  + " " + Producator);
         }
 
         public override void Afisare2()

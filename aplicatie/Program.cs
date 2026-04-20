@@ -25,7 +25,7 @@ namespace aplicatie
             */
 
             //pentru contine(ProduseManager -> Program)
-            Produs pc = new Produs(123, "", 12, "");
+            Produs pc = new Produs(123, "", 12, 100, "", "");
             if (pM.Contine(pc) == true)
             {
                 Console.WriteLine("Produsul cautat se afla in lista de produse.");
@@ -62,7 +62,7 @@ namespace aplicatie
 
             //**********SERVICII**************
             ServiciiManager sM = new ServiciiManager();
-            Serviciu ps = new Serviciu(123, "", 12, 500, 8);
+            Serviciu ps = new Serviciu(123, "", 12, 100, "", 8);
             sM.CitireServicii();
             sM.AfisareaTuturorServiciilor();
 
@@ -72,7 +72,7 @@ namespace aplicatie
             sM.VerificareServiciiDiferite();
 
             //pentru contine(ProduseManager -> Program)
-            Serviciu sc = new Serviciu(123, "", 12, 500, 8);
+            Serviciu sc = new Serviciu(123, "", 12,100, "", 8);
             if (sM.Contine(sc) == true)
             {
                 Console.WriteLine("Produsul cautat se afla in lista de servicii.");
@@ -99,27 +99,28 @@ namespace aplicatie
 
             //PENTRU INTEROGARI
             //interogare 1
-            Console.WriteLine("Ce producator cautati?");
-            string DenumireP = Console.ReadLine();
-            pM.interogare1(DenumireP);
-
-            //interogare 2
-            Console.WriteLine("Ce producator cautati?");
-            DenumireP = Console.ReadLine();
-            pM.interogare2(DenumireP, 120); //cod intern maxim 120
-
-            //interogare 3
+            pM.interogare1();
+            pM.interogare2();
             pM.interogare3();
 
 
-            /*PENTRU ListaGen
+            //SERVICII
+            sM.CitireServiciiDinFisier();
+            sM.AfisareaServiciilorList();
+
+            sM.interogare1();
+            sM.interogare2();
+            sM.interogare3();
+
+            //PENTRU ListaGen
             ListaGen<ProdusAbstract> listagenerica = new ListaGen<ProdusAbstract>();
+            Produs x = new Produs(150, "Frigider", 67, 2300, "electrocasnice", "Arctic");
             listagenerica.Add(x);
-            foreach (int element in listagenerica)
+            foreach (Produs element in listagenerica)
             {
                 Console.Write(element + " ");
             }
-            */
+            
         }
     }
 }

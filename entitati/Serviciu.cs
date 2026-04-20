@@ -8,25 +8,28 @@ namespace entitati
 {
     public class Serviciu : ProdusAbstract
     {
-        public double Pret { get; set; }
         public int DurataReparatie { get; set; }
 
-        public Serviciu(int id, string denumire, int codIntern, double pret, int durataReparatie)
-            : base(id, denumire, codIntern)
+        public Serviciu(int id, string denumire, int codIntern, int pret, string categorie, int durataReparatie)
+            : base(id, denumire, codIntern, pret, categorie)
         {
-            Pret = pret;
             DurataReparatie = durataReparatie;
         }
 
         public override void Afisare1()
         {
-            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + DurataReparatie);
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " " + DurataReparatie);
         }
 
         public override void Afisare2()
         {
             base.Afisare2();
-            Console.WriteLine(Pret + " " + DurataReparatie);
+            Console.WriteLine(DurataReparatie);
+        }
+
+        public override string ToString()
+        {
+            return ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " " + DurataReparatie;
         }
 
         public static int cautaServiciu(Serviciu[] v, int n, int codCautat)
@@ -81,6 +84,13 @@ namespace entitati
                 ok = true;
 
             return ok;
+        }
+
+        public int CompareTo(Serviciu s)
+        {
+            if (s == null)
+                return 1;
+            return ID.CompareTo(s.ID);
         }
     }
 }
