@@ -179,8 +179,8 @@ namespace aplicatie
 
         public void AfisareaPentruList()
         {
-            Console.WriteLine("*****Produsele citite din fisier sunt:*****");
-            foreach (Produs p in elemente) //pt fiecare produs p din lista elemente
+            //Console.WriteLine("*****Produsele citite din fisier sunt:*****");
+            foreach (ProdusAbstract p in elemente) //pt fiecare produs p din lista elemente
             {
                 p.Afisare2();
             }

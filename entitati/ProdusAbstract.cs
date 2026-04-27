@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace entitati
 {
-    public abstract class ProdusAbstract
+    public abstract class ProdusAbstract : IPackageable
     {
         public int ID { get; set; }
         public string Denumire { get; set; }
@@ -30,6 +30,11 @@ namespace entitati
         public virtual void Afisare2()
         {
             Console.Write(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " ");
+        }
+
+        public virtual bool canAddToPackage(Pachet pachet)
+        {
+            throw new NotImplementedException();
         }
     }
 }

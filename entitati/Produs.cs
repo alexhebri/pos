@@ -101,5 +101,8 @@ namespace entitati
 
             return ID.CompareTo(p.ID); // comparam ID-urile pentru a determina ordinea
         }
+
+        public override bool canAddToPackage(Pachet pachet)
+        { return true; }
     }
 }

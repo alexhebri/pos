@@ -194,8 +194,8 @@ namespace aplicatie
 
         public void AfisareaServiciilorList()
         {
-            Console.WriteLine("*****Serviciile citite din fisier sunt:*****");
-            foreach (Serviciu s in elemente)
+            //Console.WriteLine("*****Serviciile citite din fisier sunt:*****");
+            foreach (ProdusAbstract s in elemente)
             {
                 s.Afisare2();
             }
