@@ -199,13 +199,14 @@ namespace aplicatie
                 Console.WriteLine();
 
                 Console.WriteLine(element + " \n");
-
             }
-
             Console.ReadLine();
 
+
+            //*****************PACHETE********************
+            PacheteManager pkM = new PacheteManager();
+            pkM.CitirePachete();
+            pkM.AfisarePachete();
         }
-
     }
-
 }

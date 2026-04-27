@@ -9,7 +9,7 @@ namespace entitati
     public class Pachet : ProdusAbstract
     {
         public List<IPackageable> elem_pachet = new List<IPackageable>();
-        public Pachet(int id, string denumire, int codIntern, int pret, string categorie)
+        public Pachet(int id, string denumire, int codIntern,int pret, string categorie)
             : base(id, denumire, codIntern, pret, categorie)
         {
 
@@ -22,7 +22,7 @@ namespace entitati
 
         public override void Afisare1()
         {
-            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " ");
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Categorie + " ");
         }
 
         public override void Afisare2()
