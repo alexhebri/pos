@@ -22,7 +22,7 @@ namespace entitati
 
         public override void Afisare1()
         {
-            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Categorie + " ");
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " ");
         }
 
         public override void Afisare2()
