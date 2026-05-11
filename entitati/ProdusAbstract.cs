@@ -23,6 +23,8 @@ namespace entitati
             Categorie = categorie;
         }
 
+        public ProdusAbstract() { }
+
         //Metoda de afisare cu abstract
         public abstract void Afisare1();
 
@@ -36,5 +38,7 @@ namespace entitati
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

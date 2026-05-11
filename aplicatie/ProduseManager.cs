@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using entitati;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace aplicatie
 {
@@ -232,6 +235,26 @@ namespace aplicatie
                     Console.WriteLine(elem.ToString());
                 }
             }
+        }
+
+        public Produs loadFromXML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Produs));
+            FileStream fs = new FileStream(fileName + ".xml",
+            FileMode.Open);
+            XmlReader reader = new XmlTextReader(fs);
+            //deserializare cu crearea de obiect => constructor fara param
+            Produs produs = (Produs)xs.Deserialize(reader);
+            fs.Close();
+            return produs;
+        }
+
+        public void save2XML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Produs));
+            StreamWriter sw = new StreamWriter(fileName + ".xml");
+            xs.Serialize(sw, this);
+            sw.Close();
         }
     }
 }

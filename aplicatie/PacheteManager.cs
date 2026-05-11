@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using entitati;
 
 namespace aplicatie
@@ -87,10 +88,58 @@ namespace aplicatie
         public void AfisarePacheteSortate()
         {
             Console.WriteLine("**********Pachetele sortate dupa pret sunt***********");
-            pk.sort();
+            pachete.Sort();
             foreach (Pachet pk in pachete)
                 {
                     pk.Afisare1();
+            }
+        }
+
+        //*********INTEROGARI LINQ = un limbaj ca sql *********
+        public void interogare1()
+        {
+            IEnumerable<Pachet> rezultat1 =
+                from elem in pachete
+                where elem.Categorie == "Promotional"
+                orderby elem.Denumire
+                select elem;
+
+            Console.WriteLine("Pachetele din categoria Promotional extrase: ");
+            foreach (Pachet elem in rezultat1)
+            {
+                elem.Afisare1();
+            }
+        }
+
+        public void interogare2()
+        {
+            IEnumerable<Pachet> rezultat2 =
+                from elem in pachete
+                where elem.Pret <= 500
+                orderby elem.Categorie
+                select elem;
+            Console.WriteLine("Pachetele extrase cu pret <= 500: ");
+            foreach (Pachet elem in rezultat2)
+            {
+                elem.Afisare1();
+            }
+        }
+
+        //pachete grupate
+        public void interogare3()
+        {
+            var interogare_linq =
+                from elem in pachete
+                orderby elem.Categorie
+                group elem by elem.Categorie into gr
+                select gr;
+            foreach (var gr in interogare_linq)
+            {
+                Console.WriteLine("Categoria " + gr.Key + " :");
+                foreach (Pachet elem in gr)
+                {
+                    elem.Afisare1();
+                }
             }
         }
 

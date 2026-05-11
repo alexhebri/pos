@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using entitati;
 
 namespace aplicatie
@@ -248,6 +250,27 @@ namespace aplicatie
                     Console.WriteLine(elem.ToString());
                 }
             }
+        }
+
+
+        public Serviciu loadFromXML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Serviciu));
+            FileStream fs = new FileStream(fileName + ".xml",
+            FileMode.Open);
+            XmlReader reader = new XmlTextReader(fs);
+            //deserializare cu crearea de obiect => constructor fara param
+            Serviciu serviciu = (Serviciu)xs.Deserialize(reader);
+            fs.Close();
+            return serviciu;
+        }
+
+        public void save2XML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Serviciu));
+            StreamWriter sw = new StreamWriter(fileName + ".xml");
+            xs.Serialize(sw, this);
+            sw.Close();
         }
     }
 }

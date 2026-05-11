@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace entitati
 {
@@ -14,8 +17,20 @@ namespace entitati
         private string nume;
         private string codIntern;
 
+        [XmlElement("ID")]
+        public int Id;
+        [XmlElement("Numele")]
+        public String Denumire;
+        [XmlElement("CodulIntern")]
+        public int CodIntern;
+        [XmlElement("Pret")]
+        public int Pret;
+        [XmlElement("Categorie")]
+        public string Categorie;
+        [XmlElement("Producator")]
+        public string Producator;
 
-        public string Producator { get; set; }
+        //public string Producator { get; set; }
 
         public Produs(int id, string denumire, int codIntern, int pret, string categorie, string producator)
             : base(id, denumire, codIntern, pret, categorie)
@@ -109,6 +124,26 @@ namespace entitati
             if (pachet.PretTotal() + this.Pret > pachet.Pret)
                 return false;
             return true;
+        }
+
+        public Produs loadFromXML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Produs));
+            FileStream fs = new FileStream(fileName + ".xml",
+            FileMode.Open);
+            XmlReader reader = new XmlTextReader(fs);
+            //deserializare cu crearea de obiect => constructor fara param
+            Produs produs = (Produs)xs.Deserialize(reader);
+            fs.Close();
+            return produs;
+        }
+
+        public void save2XML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Produs));
+            StreamWriter sw = new StreamWriter(fileName + ".xml");
+            xs.Serialize(sw, this);
+            sw.Close();
         }
     }
 }

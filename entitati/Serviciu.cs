@@ -1,20 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace entitati
 {
+    [XmlRoot("ServiciuParticularizat")]
     public class Serviciu : ProdusAbstract
     {
-        public int DurataReparatie { get; set; }
+        //public int DurataReparatie { get; set; }
+        [XmlElement("ID")]
+        public int Id;
+        [XmlElement("Numele")]
+        public String Denumire;
+        [XmlElement("CodulIntern")]
+        public int CodIntern;
+        [XmlElement("Pret")]
+        public int Pret;
+        [XmlElement("Categorie")]
+        public string Categorie;
+        [XmlElement("DurataReparatie")]
+        public int DurataReparatie;
 
         public Serviciu(int id, string denumire, int codIntern, int pret, string categorie, int durataReparatie)
             : base(id, denumire, codIntern, pret, categorie)
         {
             DurataReparatie = durataReparatie;
         }
+
+
+
+        public Serviciu()
+        { }
 
         public override void Afisare1()
         {
@@ -92,5 +113,9 @@ namespace entitati
                 return 1;
             return ID.CompareTo(s.ID);
         }
+
+
+
+
     }
 }

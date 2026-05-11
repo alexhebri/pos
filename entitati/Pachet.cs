@@ -23,6 +23,7 @@ namespace entitati
         public override void Afisare1()
         {
             Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " ");
+            Console.WriteLine("Pretul total al pachetului este: " + PretTotal());
         }
 
         public override void Afisare2()
