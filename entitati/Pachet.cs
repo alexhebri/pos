@@ -34,5 +34,41 @@ namespace entitati
         {
             return true;
         }
+
+        public int NumaraProduse()
+        {
+            int k = 0;
+            foreach (IPackageable el in elem_pachet)
+            {
+                if (el is Produs)
+                {
+                    k++;
+                }
+            }
+            return k;
+        }
+
+        public int PretTotal()
+        {
+            int total = 0;
+            foreach (IPackageable el in elem_pachet)
+            {
+                if (el is ProdusAbstract pa)
+                {
+                    total += pa.Pret;
+                }
+            }
+            return total;
+        }
+
+        public int CompareTo(Pachet pK)
+        {
+            if(pK == null)
+            {
+                return 1;
+            }
+            return pK.PretTotal().CompareTo(pK.PretTotal());
+
+        }
     }
 }

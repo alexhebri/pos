@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using entitati;
@@ -36,27 +37,38 @@ namespace aplicatie
 
                 foreach (Produs p in pM.elemente)
                 {
-                    if (p.canAddToPackage(pk))
+                    Console.WriteLine("Adaugati produsul " + p.Denumire + " in pachet? (da/nu)");
+                    string raspuns = Console.ReadLine();
+                    if(raspuns.ToLower() == "da")
                     {
-                        pk.Adauga(p); //adauga un produs din lista numita elemente in pachet
-                    }
-                    else
-                    {
-                        Console.WriteLine("Produsul" + p.Denumire + "nu poate fi adaugat in pachet");
+                        if (p.canAddToPackage(pk))
+                        {
+                            pk.Adauga(p); //adauga un produs din lista numita elemente in pachet
+                        }
+                        else
+                        {
+                            Console.WriteLine("Produsul" + p.Denumire + "nu poate fi adaugat in pachet");
+                        }
                     }
                 }
 
 
                 foreach (Serviciu s in sM.elemente)
                 {
-                    if (s.canAddToPackage(pk))
+                    Console.WriteLine("Adaugati serviciul " + s.Denumire + " care are pretul" + s.Pret + "in pachet? (da/nu)");
+                    string raspuns = Console.ReadLine();
+                    if(raspuns.ToLower() == "da")
                     {
-                        pk.Adauga(s); //adauga un serviciu din lista numita elemente in pachet
+                        if (s.canAddToPackage(pk))
+                        {
+                            pk.Adauga(s); //adauga un serviciu din lista numita elemente in pachet
+                        }
+                        else
+                        {
+                            Console.WriteLine("Serviciul " + s.Denumire + "nu poate fi adaugat in pachet");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Serviciul " + s.Denumire + "nu poate fi adaugat in pachet");
-                    }
+
                 }
 
                 pachete.Add(pk); //lista de pachete 
@@ -72,6 +84,15 @@ namespace aplicatie
             }
         }
 
+        public void AfisarePacheteSortate()
+        {
+            Console.WriteLine("**********Pachetele sortate dupa pret sunt***********");
+            pk.sort();
+            foreach (Pachet pk in pachete)
+                {
+                    pk.Afisare1();
+            }
+        }
 
-    }
+    } 
 }

@@ -207,6 +207,7 @@ namespace aplicatie
             PacheteManager pkM = new PacheteManager();
             pkM.CitirePachete();
             pkM.AfisarePachete();
+            pkM.AfisarePacheteSortate();
         }
     }
 }

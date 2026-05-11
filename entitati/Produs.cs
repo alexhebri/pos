@@ -14,15 +14,15 @@ namespace entitati
         private string nume;
         private string codIntern;
 
- 
+
         public string Producator { get; set; }
 
-        public Produs(int id, string denumire, int codIntern,int pret, string categorie, string producator)
+        public Produs(int id, string denumire, int codIntern, int pret, string categorie, string producator)
             : base(id, denumire, codIntern, pret, categorie)
         {
             Producator = producator;
         }
-        
+
 
         public override string ToString()
         {
@@ -31,7 +31,7 @@ namespace entitati
 
         public override void Afisare1()
         {
-            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie  + " " + Producator);
+            Console.WriteLine(ID + " " + Denumire + " " + CodIntern + " " + Pret + " " + Categorie + " " + Producator);
         }
 
         public override void Afisare2()
@@ -96,13 +96,19 @@ namespace entitati
 
         public int CompareTo(Produs p)
         {
-            if(p == null)
+            if (p == null)
                 return 1; // consideram ca orice produs este mai mare decat null
 
             return ID.CompareTo(p.ID); // comparam ID-urile pentru a determina ordinea
         }
 
         public override bool canAddToPackage(Pachet pachet)
-        { return true; }
+        {
+            if (pachet.NumaraProduse() >= 1) // presupunem ca un pachet poate contine maxim 5 produse
+                return false;
+            if (pachet.PretTotal() + this.Pret > pachet.Pret)
+                return false;
+            return true;
+        }
     }
 }
