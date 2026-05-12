@@ -92,10 +92,23 @@ namespace aplicatie
 
         public void AfisareaTuturorServiciilor()
         {
-            Console.WriteLine("*****Serviciile sunt:*****");
+            Console.WriteLine();
+            Console.WriteLine("===== SERVICII =====");
+
+            if (j == 0)
+            {
+                Console.WriteLine("Nu exista servicii inregistrate.");
+                Console.WriteLine("=============================");
+                return;
+            }
 
             for (i = 0; i < j; i++)
+            {
+                Console.WriteLine("----- Serviciu " + (i + 1) + " -----");
                 vs[i].Afisare2();
+            }
+
+            Console.WriteLine("=============================");
         }
 
         //utilizam functiile de suprascriere
@@ -195,6 +208,7 @@ namespace aplicatie
         public void AfisareaServiciilorList()
         {
             //Console.WriteLine("*****Serviciile citite din fisier sunt:*****");
+            Console.WriteLine("============================");
             foreach (ProdusAbstract s in elemente)
             {
                 s.Afisare2();
@@ -212,6 +226,7 @@ namespace aplicatie
                 orderby elem.Denumire
                 select elem;
 
+            Console.WriteLine("============================");
             Console.WriteLine("Produsele din categoria Reparatie extrase: ");
             foreach (ProdusAbstract elem in rezultat1)
             {
@@ -226,6 +241,7 @@ namespace aplicatie
                 where elem.Categorie == "Reparatie" && Pret <= 300
                 orderby elem.Denumire
                 select elem;
+            Console.WriteLine("============================");
             Console.WriteLine("Produsele din categoria Reparatie extrase cu pret <= 300: ");
             foreach (ProdusAbstract elem in rezultat2)
             {
@@ -240,6 +256,7 @@ namespace aplicatie
             orderby elem.Denumire
             group elem by elem.Categorie into gr
             select gr;
+            Console.WriteLine("============================");
             foreach (var gr in interogare_linq)
             {
                 Console.WriteLine("Categoria " + gr.Key + " :");

@@ -15,11 +15,13 @@ namespace aplicatie
 
         public void CitireAngajati()
         {
+            Console.WriteLine("===== CITIRE ANGAJATI =====");
             Console.WriteLine("Cati angajati?");
             nA = Convert.ToInt32(Console.ReadLine());
 
             for (i = 0; i < nA; i++)
             {
+                Console.WriteLine("----- Angajat " + (i + 1) + " -----");
                 Console.Write("ID = ");
                 ID = Convert.ToInt32(Console.ReadLine());
 
@@ -32,16 +34,29 @@ namespace aplicatie
 
                 vA[i] = new Angajat(ID, Nume, Salariu);
             }
+
+            Console.WriteLine("============================");
         }
 
         public void AfisareaTuturorAngajatilor()
         {
             Console.WriteLine();
-            Console.WriteLine("***** LISTA DE ANGAJATI *****");
+            Console.WriteLine("===== LISTA DE ANGAJATI =====");
+
+            if (nA == 0)
+            {
+                Console.WriteLine("Nu exista angajati inregistrati.");
+                Console.WriteLine("=============================");
+                return;
+            }
+
             for (i = 0; i < nA; i++)
             {
+                Console.WriteLine("----- Angajat " + (i + 1) + " -----");
                 vA[i].afisare();
             }
+
+            Console.WriteLine("=============================");
         }
     }
 }

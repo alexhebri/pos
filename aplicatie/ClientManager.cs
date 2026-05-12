@@ -16,7 +16,7 @@ namespace aplicatie
 
         public void CitireClient()
         {
-            Console.WriteLine();
+            Console.WriteLine("============================");
             Console.WriteLine("Cati clienti?");
             nC = Convert.ToInt32(Console.ReadLine());
 
@@ -39,11 +39,22 @@ namespace aplicatie
         public void AfisareaTuturorAngajatilor()
         {
             Console.WriteLine();
-            Console.WriteLine("***** LISTA DE CLIENTI *****");
+            Console.WriteLine("===== CLIENTI =====");
+
+            if (nC == 0)
+            {
+                Console.WriteLine("Nu exista clienti inregistrati.");
+                Console.WriteLine("=============================");
+                return;
+            }
+
             for (i = 0; i < nC; i++)
             {
+                Console.WriteLine("----- Client " + (i + 1) + " -----");
                 vC[i].afisare();
             }
+
+            Console.WriteLine("=============================");
         }
     }
 }

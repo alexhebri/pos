@@ -22,11 +22,13 @@ namespace aplicatie
 
         public void CitireProduse()
         {
-            Console.Write("Cate produse?");
+            Console.Write("Cate produse? ");
+
             nProd = Convert.ToInt32(Console.ReadLine());
             j = 0;
             for (i = 0; i < nProd; i++)
             {
+                Console.WriteLine("============================");
                 Console.Write("Cod produs: ");
                 ID = Convert.ToInt32(Console.ReadLine());
 
@@ -103,9 +105,23 @@ namespace aplicatie
 
         public void AfisareaTuturorProduselor()
         {
-            Console.WriteLine("*****Produsele sunt:*****");
+            Console.WriteLine();
+            Console.WriteLine("===== PRODUSE =====");
+
+            if (j == 0)
+            {
+                Console.WriteLine("Nu exista produse inregistrate.");
+                Console.WriteLine("=============================");
+                return;
+            }
+
             for (i = 0; i < j; i++)
+            {
+                Console.WriteLine("----- Produs " + (i + 1) + " -----");
                 vp[i].Afisare2();
+            }
+
+            Console.WriteLine("=============================");
         }
 
         // cautare dupa obiect
@@ -199,7 +215,8 @@ namespace aplicatie
                 orderby elem.Denumire
                 select elem;
 
-                Console.WriteLine("Produsele din categoria IT extrase: ");
+            Console.WriteLine("============================");
+            Console.WriteLine("Produsele din categoria IT extrase: ");
             foreach (ProdusAbstract elem in rezultat1)
             {
                 Console.WriteLine(elem.ToString());
@@ -213,6 +230,7 @@ namespace aplicatie
                 where elem.Categorie== "IT" && Pret <= 2000
                 orderby elem.Denumire
                 select elem;
+            Console.WriteLine("============================");
             Console.WriteLine("Produsele din categoria IT extrase cu pret <= 2000: ");
             foreach (ProdusAbstract elem in rezultat2)
             {
@@ -227,6 +245,8 @@ namespace aplicatie
             orderby elem.Denumire
             group elem by elem.Categorie into gr
             select gr;
+
+            Console.WriteLine("============================");
             foreach (var gr in interogare_linq)
             {
                 Console.WriteLine("Categoria " + gr.Key + " :");

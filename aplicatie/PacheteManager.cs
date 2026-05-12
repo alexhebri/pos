@@ -19,11 +19,13 @@ namespace aplicatie
 
         public void CitirePachete()
         {
+            Console.WriteLine("============================");
             Console.WriteLine("Cate pachete doriti?");
             nrPack = Convert.ToInt32(Console.ReadLine());
 
             for (i = 0; i < nrPack; i++)
             {
+                Console.WriteLine("============================");
                 Console.WriteLine("Id pachet: ");
                 Id = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Denumire pachet: ");
@@ -78,21 +80,49 @@ namespace aplicatie
 
         public void AfisarePachete()
         {
-            Console.WriteLine("**********Pachetele sunt***********");
+            Console.WriteLine();
+            Console.WriteLine("===== PACHETE =====");
+
+            if (pachete.Count == 0)
+            {
+                Console.WriteLine("Nu exista pachete.");
+                Console.WriteLine("=============================");
+                return;
+            }
+
+            int idx = 1;
             foreach (Pachet pk in pachete)
             {
+                Console.WriteLine("----- Pachet " + idx + " -----");
                 pk.Afisare1();
+                idx++;
             }
+
+            Console.WriteLine("=============================");
         }
 
         public void AfisarePacheteSortate()
         {
-            Console.WriteLine("**********Pachetele sortate dupa pret sunt***********");
+            Console.WriteLine();
+            Console.WriteLine("===== PACHETE SORTATE =====");
             pachete.Sort();
+
+            if (pachete.Count == 0)
+            {
+                Console.WriteLine("Nu exista pachete.");
+                Console.WriteLine("=============================");
+                return;
+            }
+
+            int idx = 1;
             foreach (Pachet pk in pachete)
             {
+                Console.WriteLine("----- Pachet " + idx + " -----");
                 pk.Afisare1();
+                idx++;
             }
+
+            Console.WriteLine("=============================");
         }
 
         //*********INTEROGARI LINQ = un limbaj ca sql *********
@@ -104,6 +134,7 @@ namespace aplicatie
                 orderby elem.Denumire
                 select elem;
 
+            Console.WriteLine("============================");
             Console.WriteLine("Pachetele din categoria Promotional extrase: ");
             foreach (Pachet elem in rezultat1)
             {
@@ -118,6 +149,8 @@ namespace aplicatie
                 where elem.Pret <= 500
                 orderby elem.Categorie
                 select elem;
+
+            Console.WriteLine("============================");
             Console.WriteLine("Pachetele extrase cu pret <= 500: ");
             foreach (Pachet elem in rezultat2)
             {
@@ -133,6 +166,8 @@ namespace aplicatie
                 orderby elem.Categorie
                 group elem by elem.Categorie into gr
                 select gr;
+
+            Console.WriteLine("============================");
             foreach (var gr in interogare_linq)
             {
                 Console.WriteLine("Categoria " + gr.Key + " :");
