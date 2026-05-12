@@ -16,7 +16,6 @@ namespace aplicatie
         public string DenumireSer, Categorie;
 
         public Serviciu ps = new Serviciu(123, "", 12, 0, "", 8);
-
         public Serviciu[] vs = new Serviciu[10];
 
         public void CitireServicii()
@@ -152,7 +151,6 @@ namespace aplicatie
         // cautare dupa nume (returneaza TOATE)
         public Serviciu[] Contine2(string numeProdus)
         {
-
             int k = 0;
 
             for (int i = 0; i < j; i++)

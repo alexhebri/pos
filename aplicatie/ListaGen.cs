@@ -48,7 +48,5 @@ namespace aplicatie
                 current = current.Next;
             }
         }
-
-
     }
 }

@@ -90,8 +90,8 @@ namespace aplicatie
             Console.WriteLine("**********Pachetele sortate dupa pret sunt***********");
             pachete.Sort();
             foreach (Pachet pk in pachete)
-                {
-                    pk.Afisare1();
+            {
+                pk.Afisare1();
             }
         }
 
@@ -142,6 +142,5 @@ namespace aplicatie
                 }
             }
         }
-
     } 
 }
