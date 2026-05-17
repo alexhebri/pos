@@ -86,27 +86,14 @@ namespace entitati
 
         public static bool operator ==(Produs p1, Produs p2)
         {
-            bool ok = false;
-
-            if (ReferenceEquals(p1, p2))
-                ok = true;
-            else if (p1 != null && p2 != null)
-            {
-                if (p1.ID == p2.ID && p1.CodIntern == p2.CodIntern)
-                    ok = true;
-            }
-
-            return ok;
+            if (ReferenceEquals(p1, p2)) return true;
+            if (p1 is null || p2 is null) return false;
+            return p1.ID == p2.ID && p1.CodIntern == p2.CodIntern;
         }
 
         public static bool operator !=(Produs p1, Produs p2)
         {
-            bool ok = false; // presupunem ca NU sunt diferite
-
-            if (!(p1 == p2)) // folosim operatorul == inversat
-                ok = true;
-
-            return ok;
+            return !(p1 == p2);
         }
 
         public int CompareTo(Produs p)

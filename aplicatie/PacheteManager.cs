@@ -26,15 +26,15 @@ namespace aplicatie
             for (i = 0; i < nrPack; i++)
             {
                 Console.WriteLine("============================");
-                Console.WriteLine("Id pachet: ");
+                Console.Write("Id pachet: ");
                 Id = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Denumire pachet: ");
+                Console.Write("Denumire pachet: ");
                 Denumire = Console.ReadLine();
-                Console.WriteLine("Cod intern: ");
+                Console.Write("Cod intern: ");
                 CodIntern = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Pret: ");
+                Console.Write("Pret: ");
                 Pret = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Categorie: ");
+                Console.Write("Categorie: ");
                 Categorie = Console.ReadLine();
                 Pachet pk = new Pachet(Id, Denumire, CodIntern, Pret, Categorie);
 

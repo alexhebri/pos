@@ -57,7 +57,7 @@ namespace entitati
         {
             int ok = 0;
             for (int i = 0; i < n; i++)
-                if (codCautat == v[i].ID)
+                if (v[i] != null && v[i].ID == codCautat)
                     ok = 1;
             return ok;
         }
@@ -84,27 +84,14 @@ namespace entitati
 
         public static bool operator ==(Serviciu s1, Serviciu s2)
         {
-            bool ok = false; 
-
-            if (ReferenceEquals(s1, s2))
-                ok = true;
-            else if (s1 != null && s2 != null)
-            {
-                if (s1.ID == s2.ID && s1.CodIntern == s2.CodIntern)
-                    ok = true;
-            }
-
-            return ok;
+            if (ReferenceEquals(s1, s2)) return true;
+            if (s1 is null || s2 is null) return false;
+            return s1.ID == s2.ID && s1.CodIntern == s2.CodIntern;
         }
 
         public static bool operator !=(Serviciu s1, Serviciu s2)
         {
-            bool ok = false; // presupunem ca NU sunt diferite
-
-            if (!(s1 == s2)) // folosim operatorul == inversat
-                ok = true;
-
-            return ok;
+            return !(s1 == s2);
         }
 
         public int CompareTo(Serviciu s)

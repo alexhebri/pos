@@ -150,7 +150,7 @@ namespace aplicatie
                 Console.WriteLine();
                 Console.WriteLine(element + " \n");
             }
-            Console.ReadLine();
+            
 
 
             //*****************PACHETE********************
