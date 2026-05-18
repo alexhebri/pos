@@ -1,8 +1,10 @@
 ﻿using System;
 
 using System.Collections.Generic;
-
+using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
 using System.Text;
 
@@ -21,6 +23,8 @@ namespace aplicatie
         static void Main(string[] args)
 
         {
+            
+
 
             //*************PRODUSE**************
 
@@ -80,6 +84,26 @@ namespace aplicatie
             pM.CitireaDinFisier();
             pM.AfisareaPentruList();
 
+            //***************serializare produs*****************
+            Console.WriteLine("\nSerializare produs:\n");
+            Produs p1 = new Produs(2, "Ecran", 2, 500, "Telefoane", "Samsung");
+            p1.save2XML("produs_test");
+
+            Console.WriteLine("Produs serializat in produs_test.xml:\n");)
+            Console.WriteLine("\nContinut fisierului produs_test.xml:\n");
+            Console.WriteLine(File.ReadAllText("produs_test.xml"));
+
+            //*****************deserializare produs*****************
+            Produs p2 = p1.loadFromXML("produs_test.xml");
+            if (p2 != null)
+            {
+                Console.WriteLine("\nProdusul deserializat este:\n");
+                p2.Afisare1();
+            }
+
+
+
+
             //**********SERVICII**************
 
             ServiciiManager sM = new ServiciiManager();
@@ -122,6 +146,25 @@ namespace aplicatie
                     Console.WriteLine(rezultat[i]);
                 }
             }
+
+
+            //***************serializare serviciu*****************
+            Console.WriteLine("\nSerializare serviciu:\n");
+            Serviciu s1 = new Serviciu(1, "Reparatie ecran", 1, 350, "Telefoane", 3);
+            s1.save2XML("serviciu_test");
+
+            Console.WriteLine("\nContinut fisierului serviciu_test.xml:\n");
+            Console.WriteLine(File.ReadAllText("serviciu_test.xml"));
+
+            //*****************deserializare serviciu*****************
+            Serviciu s2 = s1.loadFromXML("serviciu_test.xml");
+            if(s2 != null)
+            {
+                Console.WriteLine("\nServiciul deserializat este:\n");
+                s2.Afisare1();
+            }
+
+
 
             //PENTRU INTEROGARI
 
